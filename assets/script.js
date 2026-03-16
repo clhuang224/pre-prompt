@@ -17,6 +17,7 @@ const DEFAULT_MAPPINGS = [
   { from: '', to: '', enabled: true },
 ];
 let toastTimerId;
+let sortableInstance;
 
 function loadMappings() {
   try {
@@ -70,6 +71,14 @@ function renderMappings(mappings) {
   mappings.forEach((map, idx) => {
     const row = document.createElement('div');
     row.className = 'mapping-row';
+    row.dataset.index = String(idx);
+
+    const dragHandle = document.createElement('button');
+    dragHandle.type = 'button';
+    dragHandle.className = 'drag-handle';
+    dragHandle.title = '拖曳排序';
+    dragHandle.setAttribute('aria-label', '拖曳排序');
+    dragHandle.innerHTML = '<span></span><span></span><span></span>';
 
     const switchLabel = document.createElement('label');
     switchLabel.className = 'switch';
@@ -111,6 +120,8 @@ function renderMappings(mappings) {
     });
 
     const del = document.createElement('button');
+    del.type = 'button';
+    del.className = 'delete-button';
     del.textContent = '刪除';
     del.addEventListener('click', () => {
       mappings.splice(idx, 1);
@@ -119,11 +130,50 @@ function renderMappings(mappings) {
       updateOutput();
     });
 
+    row.appendChild(dragHandle);
     row.appendChild(switchLabel);
     row.appendChild(from);
     row.appendChild(to);
     row.appendChild(del);
     mappingsDiv.appendChild(row);
+  });
+
+  initializeSortable();
+}
+
+function initializeSortable() {
+  if (typeof Sortable === 'undefined') {
+    return;
+  }
+
+  sortableInstance?.destroy();
+  sortableInstance = Sortable.create(mappingsDiv, {
+    animation: 180,
+    handle: '.drag-handle',
+    draggable: '.mapping-row',
+    ghostClass: 'mapping-row-ghost',
+    chosenClass: 'mapping-row-chosen',
+    dragClass: 'mapping-row-drag',
+    forceFallback: true,
+    fallbackOnBody: true,
+    fallbackTolerance: 4,
+    onStart() {
+      document.body.classList.add('is-sorting-active');
+    },
+    onEnd(event) {
+      document.body.classList.remove('is-sorting-active');
+
+      if (event.oldIndex == null || event.newIndex == null || event.oldIndex === event.newIndex) {
+        return;
+      }
+
+      const mappings = loadMappings();
+      const [movedItem] = mappings.splice(event.oldIndex, 1);
+      mappings.splice(event.newIndex, 0, movedItem);
+      saveMappings(mappings);
+      renderMappings(mappings);
+      updateOutput();
+    },
   });
 }
 
