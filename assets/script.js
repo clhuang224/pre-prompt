@@ -9,6 +9,13 @@ const statusMessage = document.getElementById('statusMessage');
 const STORAGE_KEY = 'word_mappings_v1';
 const INPUT_STORAGE_KEY = 'input_text_v1';
 const TOAST_DURATION_MS = 2400;
+const DEFAULT_INPUT_TEXT = '竹筍公主最喜歡吃北門口肉圓，配上東泉辣椒醬。';
+const DEFAULT_MAPPINGS = [
+  { from: '竹筍公主', to: '我朋友', enabled: true },
+  { from: '東泉辣椒醬', to: '台中神醬', enabled: true },
+  { from: '北門口肉圓', to: '彰化第一肉圓', enabled: false },
+  { from: '', to: '', enabled: true },
+];
 let toastTimerId;
 
 function loadMappings() {
@@ -156,6 +163,19 @@ function loadInputText() {
   return localStorage.getItem(INPUT_STORAGE_KEY) || '';
 }
 
+function initializeDefaultData() {
+  const hasStoredMappings = localStorage.getItem(STORAGE_KEY) !== null;
+  const hasStoredInput = localStorage.getItem(INPUT_STORAGE_KEY) !== null;
+
+  if (!hasStoredMappings) {
+    saveMappings(DEFAULT_MAPPINGS);
+  }
+
+  if (!hasStoredInput) {
+    saveInputText(DEFAULT_INPUT_TEXT);
+  }
+}
+
 function exportMappings() {
   const mappings = loadMappings();
   const payload = {
@@ -224,7 +244,9 @@ importFileInput.addEventListener('change', event => {
   importFileInput.value = '';
 });
 
+initializeDefaultData();
 renderMappings(loadMappings());
+inputText.value = loadInputText();
 updateOutput();
 setStatus('');
 
