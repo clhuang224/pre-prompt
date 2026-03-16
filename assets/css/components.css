@@ -1,5 +1,6 @@
 textarea:focus,
-.mapping-row input[type="text"]:focus {
+.mapping-row input[type="text"]:focus,
+.mapping-search-input:focus {
   border-color: rgba(25, 118, 210, 0.62);
   background: #fff;
   box-shadow: 0 0 0 4px rgba(25, 118, 210, 0.12);
@@ -17,9 +18,9 @@ textarea[readonly]:hover {
 .mapping-row {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  padding: 0.8rem 0.9rem;
-  margin-bottom: 0.75rem;
+  gap: 12px;
+  padding: 12px 16px;
+  margin-bottom: 12px;
   border: 1px solid var(--surface-border);
   border-radius: var(--radius-md);
   background: #fff;
@@ -29,14 +30,14 @@ textarea[readonly]:hover {
 .mapping-row:hover {
   border-color: rgba(25, 118, 210, 0.35);
   box-shadow: var(--shadow-soft);
-  transform: translateY(-1px);
+  transform: translateY(-2px);
 }
 
 .mapping-row input[type="text"] {
   flex: 1 1 0;
   min-width: 0;
-  height: 2.9rem;
-  padding: 0 0.9rem;
+  height: 48px;
+  padding: 0 14px;
   border: 1px solid var(--surface-border);
   border-radius: var(--radius-sm);
   background: var(--surface-muted);
@@ -51,10 +52,10 @@ textarea[readonly]:hover {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.22rem;
-  width: 2.5rem;
-  min-width: 2.5rem;
-  min-height: 2.5rem;
+  gap: 4px;
+  width: 40px;
+  min-width: 40px;
+  min-height: 40px;
   padding: 0;
   border: 1px solid rgba(25, 118, 210, 0.14);
   background: #fff;
@@ -67,7 +68,7 @@ textarea[readonly]:hover {
 
 .drag-handle span {
   display: block;
-  width: 0.95rem;
+  width: 16px;
   height: 2px;
   border-radius: 999px;
   background: currentColor;
@@ -87,8 +88,8 @@ textarea[readonly]:hover {
   position: relative;
   display: inline-flex;
   align-items: center;
-  width: 2.8rem;
-  height: 1.7rem;
+  width: 44px;
+  height: 28px;
   margin: 0;
   cursor: pointer;
   flex-shrink: 0;
@@ -114,10 +115,10 @@ textarea[readonly]:hover {
 .switch-slider::before {
   content: "";
   position: absolute;
-  top: 0.2rem;
-  left: 0.2rem;
-  width: 1.3rem;
-  height: 1.3rem;
+  top: 4px;
+  left: 4px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
   background: #fff;
   box-shadow: 0 2px 6px rgba(15, 23, 42, 0.18);
@@ -129,7 +130,7 @@ textarea[readonly]:hover {
 }
 
 .switch input:checked + .switch-slider::before {
-  transform: translateX(1.1rem);
+  transform: translateX(16px);
 }
 
 .switch input:focus-visible + .switch-slider {
@@ -137,13 +138,26 @@ textarea[readonly]:hover {
 }
 
 .button {
-  min-height: 2.75rem;
-  padding: 0 1rem;
+  min-height: 44px;
+  padding: 0 16px;
+}
+
+.mapping-search-input {
+  box-sizing: border-box;
+  min-height: 44px;
+  padding: 0 16px;
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-sm);
+  background: var(--surface-muted);
+  color: var(--text-main);
+  font: inherit;
+  outline: none;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
 }
 
 .language-switcher select {
-  min-height: 2.75rem;
-  padding: 0 0.85rem;
+  min-height: 44px;
+  padding: 0 14px;
   border: 1px solid var(--surface-border);
   border-radius: var(--radius-sm);
   background: var(--card-bg);
@@ -180,20 +194,20 @@ textarea[readonly]:hover {
 }
 
 .mapping-row .delete-button {
-  min-height: 2.75rem;
-  padding: 0 0.95rem;
+  min-height: 44px;
+  padding: 0 16px;
   background: var(--danger-soft);
   color: var(--danger-text);
 }
 
 #mappings {
-  margin-bottom: 1rem;
+  margin-bottom: 16px;
 }
 
 #mappings:empty::before {
   content: attr(data-empty-text);
   display: block;
-  padding: 1rem 1.1rem;
+  padding: 16px 20px;
   border: 1px dashed var(--surface-border);
   border-radius: var(--radius-md);
   background: var(--surface-muted);
@@ -202,11 +216,12 @@ textarea[readonly]:hover {
 
 .status-message {
   position: fixed;
-  right: 1.25rem;
-  bottom: 1.5rem;
-  max-width: min(320px, calc(100vw - 3rem));
+  right: 20px;
+  bottom: 24px;
+  width: calc(100vw - 48px);
+  max-width: 320px;
   margin: 0;
-  padding: 0.75rem 1rem;
+  padding: 12px 16px;
   border-radius: 1rem;
   background: rgba(34, 34, 34, 0.92);
   color: #fff;
@@ -268,9 +283,9 @@ body.is-sorting-active .drag-handle {
   }
 
   .status-message {
-    right: 0.75rem;
-    left: 0.75rem;
-    bottom: 1rem;
+    right: 12px;
+    left: 12px;
+    bottom: 16px;
     max-width: none;
   }
 }

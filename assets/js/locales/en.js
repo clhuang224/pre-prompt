@@ -24,6 +24,7 @@ export const en = {
     outputTitle: 'Click to copy the current result',
     mappingKicker: 'Mappings',
     mappingTitle: 'Mapping Manager',
+    searchMappingsPlaceholder: 'Search mappings',
     exportMappings: 'Export Mappings',
     importMappings: 'Import Mappings',
     addMapping: 'Add',
@@ -33,6 +34,7 @@ export const en = {
     toPlaceholder: 'Replacement',
     deleteMapping: 'Delete',
     emptyMappings: 'No mappings yet. Add a rule to get started.',
+    emptySearchMappings: 'No mappings match your search.',
   },
   messages: {
     exportSuccess: count => `Exported ${count} mappings`,

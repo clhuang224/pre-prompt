@@ -24,6 +24,7 @@ export const zhTW = {
     outputTitle: '點一下即可複製內容',
     mappingKicker: 'Mappings',
     mappingTitle: '詞組管理',
+    searchMappingsPlaceholder: '搜尋詞組',
     exportMappings: '匯出詞組',
     importMappings: '匯入詞組',
     addMapping: '新增',
@@ -33,6 +34,7 @@ export const zhTW = {
     toPlaceholder: '新字詞',
     deleteMapping: '刪除',
     emptyMappings: '尚未新增詞組，先建立一組對照規則吧。',
+    emptySearchMappings: '找不到符合搜尋條件的詞組。',
   },
   messages: {
     exportSuccess: count => `已匯出 ${count} 筆詞組`,

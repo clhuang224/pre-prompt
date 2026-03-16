@@ -27,6 +27,7 @@ const addMappingBtn = document.getElementById('addMapping');
 const exportMappingsBtn = document.getElementById('exportMappings');
 const importMappingsBtn = document.getElementById('importMappings');
 const importFileInput = document.getElementById('importFile');
+const mappingSearchInput = document.getElementById('mappingSearch');
 const statusMessage = document.getElementById('statusMessage');
 const languageLabel = document.getElementById('languageLabel');
 const languageSelect = document.getElementById('languageSelect');
@@ -42,6 +43,7 @@ const { setStatus, clearStatus } = createToastController(statusMessage, TOAST_DU
 let mappings = [];
 let sortableInstance = null;
 let currentLocale = getLocale(getInitialLocaleCode());
+let mappingSearchTerm = '';
 
 function persistMappings() {
   saveMappings(mappings);
@@ -61,6 +63,12 @@ function getUiText() {
 
 function bindSortable() {
   sortableInstance?.destroy();
+
+  if (mappingSearchTerm.trim()) {
+    sortableInstance = null;
+    return;
+  }
+
   sortableInstance = createSortable(mappingsDiv, {
     onStart() {
       document.body.classList.add('is-sorting-active');
@@ -81,8 +89,28 @@ function bindSortable() {
   });
 }
 
+function getFilteredMappings() {
+  const keyword = mappingSearchTerm.trim().toLocaleLowerCase();
+
+  return mappings
+    .map((map, index) => ({ map, index }))
+    .filter(({ map }) => {
+      if (!keyword) {
+        return true;
+      }
+
+      return [map.from, map.to]
+        .some(value => (value || '').toLocaleLowerCase().includes(keyword));
+    });
+}
+
 function refreshMappings() {
-  renderMappings(mappingsDiv, mappings, {
+  const filteredMappings = getFilteredMappings();
+  mappingsDiv.dataset.emptyText = mappings.length > 0 && mappingSearchTerm.trim()
+    ? getUiText().emptySearchMappings
+    : getUiText().emptyMappings;
+
+  renderMappings(mappingsDiv, filteredMappings, {
     onToggle(index, enabled) {
       mappings[index].enabled = enabled;
       persistMappings();
@@ -156,10 +184,11 @@ function applyLocale() {
   outputText.title = uiText.outputTitle;
   mappingKicker.textContent = uiText.mappingKicker;
   mappingTitle.textContent = uiText.mappingTitle;
+  mappingSearchInput.placeholder = uiText.searchMappingsPlaceholder;
+  mappingSearchInput.setAttribute('aria-label', uiText.searchMappingsPlaceholder);
   exportMappingsBtn.textContent = uiText.exportMappings;
   importMappingsBtn.textContent = uiText.importMappings;
   addMappingBtn.textContent = uiText.addMapping;
-  mappingsDiv.dataset.emptyText = uiText.emptyMappings;
   languageSelect.setAttribute('aria-label', uiText.languageLabel);
   languageSelect.value = currentLocale.code;
   refreshMappings();
@@ -187,6 +216,10 @@ function initializeApp() {
   });
 
   addMappingBtn.addEventListener('click', addMapping);
+  mappingSearchInput.addEventListener('input', () => {
+    mappingSearchTerm = mappingSearchInput.value;
+    refreshMappings();
+  });
   exportMappingsBtn.addEventListener('click', () => {
     exportMappings(mappings, getMessages(), setStatus);
   });
@@ -208,6 +241,7 @@ function initializeApp() {
     currentLocale = getLocale(getInitialLocaleCode());
     mappings = loadMappings();
     inputText.value = loadInputText();
+    mappingSearchTerm = mappingSearchInput.value;
     applyLocale();
     refreshOutput();
   });

@@ -1,7 +1,7 @@
 export function renderMappings(container, mappings, actions, uiText) {
   container.innerHTML = '';
 
-  mappings.forEach((map, index) => {
+  mappings.forEach(({ map, index }) => {
     const row = document.createElement('div');
     row.className = 'mapping-row';
     row.dataset.index = String(index);

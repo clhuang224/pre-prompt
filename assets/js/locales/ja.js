@@ -24,6 +24,7 @@ export const ja = {
     outputTitle: 'クリックして結果をコピー',
     mappingKicker: 'Mappings',
     mappingTitle: 'マッピング管理',
+    searchMappingsPlaceholder: 'マッピングを検索',
     exportMappings: '書き出し',
     importMappings: '読み込み',
     addMapping: '追加',
@@ -33,6 +34,7 @@ export const ja = {
     toPlaceholder: '新しい語句',
     deleteMapping: '削除',
     emptyMappings: 'まだマッピングがありません。まずはルールを追加してください。',
+    emptySearchMappings: '検索条件に一致するマッピングがありません。',
   },
   messages: {
     exportSuccess: count => `${count} 件のマッピングを書き出しました`,
