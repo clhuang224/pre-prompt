@@ -217,11 +217,40 @@ function importMappingsFromFile(file) {
   reader.readAsText(file);
 }
 
+async function copyOutputText() {
+  const text = outputText.value;
+
+  if (!text) {
+    setStatus('目前沒有可複製的內容');
+    return;
+  }
+
+  try {
+    await navigator.clipboard.writeText(text);
+    setStatus('已複製結果');
+  } catch {
+    outputText.focus();
+    outputText.select();
+    outputText.setSelectionRange(0, text.length);
+
+    const copied = document.execCommand('copy');
+    window.getSelection()?.removeAllRanges();
+
+    if (copied) {
+      setStatus('已複製結果');
+      return;
+    }
+
+    setStatus('複製失敗，請手動複製');
+  }
+}
+
 inputText.value = loadInputText();
 inputText.addEventListener('input', () => {
   saveInputText(inputText.value);
   updateOutput();
 });
+outputText.addEventListener('click', copyOutputText);
 
 addMappingBtn.addEventListener('click', addMapping);
 exportMappingsBtn.addEventListener('click', exportMappings);

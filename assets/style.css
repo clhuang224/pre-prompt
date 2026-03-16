@@ -143,6 +143,11 @@ textarea:focus,
 
 textarea[readonly] {
   background: #fbfcfe;
+  cursor: copy;
+}
+
+textarea[readonly]:hover {
+  border-color: rgba(25, 118, 210, 0.42);
 }
 
 .mapping-row {
