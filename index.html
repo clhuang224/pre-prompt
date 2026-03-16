@@ -15,8 +15,16 @@
             <label>結果</label>
             <textarea id="outputText" readonly></textarea>
         </div>
+        <div class="actions">
+            <button id="addMapping" type="button">新增項目</button>
+        </div>
         <div id="mappings"></div>
-        <button id="addMapping">新增</button>
+        <div class="actions">
+            <button id="exportMappings" type="button">匯出詞組</button>
+            <button id="importMappings" type="button">匯入詞組</button>
+            <input id="importFile" type="file" accept="application/json" hidden>
+        </div>
+        <p id="statusMessage" class="status-message" aria-live="polite"></p>
         <script src="./assets/script.js"></script>
     </body>
 </html>

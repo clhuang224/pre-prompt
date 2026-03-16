@@ -2,8 +2,14 @@ const inputText = document.getElementById('inputText');
 const outputText = document.getElementById('outputText');
 const mappingsDiv = document.getElementById('mappings');
 const addMappingBtn = document.getElementById('addMapping');
+const exportMappingsBtn = document.getElementById('exportMappings');
+const importMappingsBtn = document.getElementById('importMappings');
+const importFileInput = document.getElementById('importFile');
+const statusMessage = document.getElementById('statusMessage');
 const STORAGE_KEY = 'word_mappings_v1';
 const INPUT_STORAGE_KEY = 'input_text_v1';
+const TOAST_DURATION_MS = 2400;
+let toastTimerId;
 
 function loadMappings() {
   try {
@@ -15,6 +21,41 @@ function loadMappings() {
 
 function saveMappings(mappings) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(mappings));
+}
+
+function normalizeMappings(mappings) {
+  if (!Array.isArray(mappings)) {
+    throw new Error('Invalid mappings format');
+  }
+
+  return mappings.map(map => ({
+    from: typeof map.from === 'string' ? map.from : '',
+    to: typeof map.to === 'string' ? map.to : '',
+    enabled: map.enabled !== false,
+  }));
+}
+
+function setStatus(message) {
+  statusMessage.textContent = message;
+  statusMessage.classList.remove('is-visible');
+
+  if (toastTimerId) {
+    window.clearTimeout(toastTimerId);
+    toastTimerId = undefined;
+  }
+
+  if (!message) {
+    return;
+  }
+
+  requestAnimationFrame(() => {
+    statusMessage.classList.add('is-visible');
+  });
+
+  toastTimerId = window.setTimeout(() => {
+    statusMessage.classList.remove('is-visible');
+    toastTimerId = undefined;
+  }, TOAST_DURATION_MS);
 }
 
 function renderMappings(mappings) {
@@ -95,6 +136,7 @@ function addMapping() {
   mappings.push({ from: '', to: '', enabled: true });
   saveMappings(mappings);
   renderMappings(mappings);
+  setStatus('');
 }
 
 function saveInputText(text) {
@@ -105,6 +147,47 @@ function loadInputText() {
   return localStorage.getItem(INPUT_STORAGE_KEY) || '';
 }
 
+function exportMappings() {
+  const mappings = loadMappings();
+  const payload = {
+    version: 1,
+    exportedAt: new Date().toISOString(),
+    mappings,
+  };
+  const blob = new Blob([JSON.stringify(payload, null, 2)], {
+    type: 'application/json',
+  });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+
+  link.href = url;
+  link.download = 'preprompt-mappings.json';
+  link.click();
+  URL.revokeObjectURL(url);
+  setStatus(`已匯出 ${mappings.length} 筆詞組`);
+}
+
+function importMappingsFromFile(file) {
+  if (!file) {
+    return;
+  }
+
+  const reader = new FileReader();
+  reader.addEventListener('load', () => {
+    try {
+      const parsed = JSON.parse(reader.result);
+      const importedMappings = normalizeMappings(parsed.mappings ?? parsed);
+      saveMappings(importedMappings);
+      renderMappings(importedMappings);
+      updateOutput();
+      setStatus(`已匯入 ${importedMappings.length} 筆詞組`);
+    } catch {
+      setStatus('匯入失敗，請確認 JSON 格式正確');
+    }
+  });
+  reader.readAsText(file);
+}
+
 inputText.value = loadInputText();
 inputText.addEventListener('input', () => {
   saveInputText(inputText.value);
@@ -112,9 +195,29 @@ inputText.addEventListener('input', () => {
 });
 
 addMappingBtn.addEventListener('click', addMapping);
+exportMappingsBtn.addEventListener('click', exportMappings);
+importMappingsBtn.addEventListener('click', () => {
+  const hasMappingsOnScreen = loadMappings().length > 0;
+
+  if (hasMappingsOnScreen) {
+    const confirmed = window.confirm('一旦匯入，會覆蓋畫面上的詞組資料，確定要繼續嗎？');
+
+    if (!confirmed) {
+      setStatus('已取消匯入');
+      return;
+    }
+  }
+
+  importFileInput.click();
+});
+importFileInput.addEventListener('change', event => {
+  importMappingsFromFile(event.target.files[0]);
+  importFileInput.value = '';
+});
 
 renderMappings(loadMappings());
 updateOutput();
+setStatus('');
 
 window.addEventListener('storage', () => {
   inputText.value = loadInputText();

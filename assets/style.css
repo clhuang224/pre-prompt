@@ -3,6 +3,11 @@ body {
   margin: 2em;
 }
 
+label {
+  display: block;
+  margin-bottom: 0.25em;
+}
+
 textarea {
   width: 100%;
   min-height: 100px;
@@ -30,4 +35,33 @@ textarea {
 
 #mappings {
   margin-bottom: 1em;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em;
+  margin-bottom: 0.75em;
+}
+
+.status-message {
+  position: fixed;
+  left: 1.5rem;
+  bottom: 1.5rem;
+  max-width: min(320px, calc(100vw - 3rem));
+  margin: 0;
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
+  background: rgba(34, 34, 34, 0.92);
+  color: #fff;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(10px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.status-message.is-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
