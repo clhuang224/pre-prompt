@@ -11,6 +11,7 @@ export function renderMappings(container, mappings, actions, uiText) {
     dragHandle.className = 'drag-handle';
     dragHandle.title = uiText.dragHandleLabel;
     dragHandle.setAttribute('aria-label', uiText.dragHandleLabel);
+    dragHandle.disabled = actions.isSortDisabled === true;
     dragHandle.innerHTML = '<span></span><span></span><span></span>';
 
     const switchLabel = document.createElement('label');

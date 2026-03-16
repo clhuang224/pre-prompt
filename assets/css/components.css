@@ -84,6 +84,18 @@ textarea[readonly]:hover {
   cursor: grabbing;
 }
 
+.drag-handle:disabled {
+  opacity: 0.48;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.drag-handle:disabled:hover {
+  border-color: rgba(25, 118, 210, 0.14);
+  background: #fff;
+  color: var(--text-muted);
+}
+
 .switch {
   position: relative;
   display: inline-flex;

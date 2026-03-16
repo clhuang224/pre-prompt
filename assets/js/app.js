@@ -106,11 +106,13 @@ function getFilteredMappings() {
 
 function refreshMappings() {
   const filteredMappings = getFilteredMappings();
+  const isSearchActive = mappingSearchTerm.trim() !== '';
   mappingsDiv.dataset.emptyText = mappings.length > 0 && mappingSearchTerm.trim()
     ? getUiText().emptySearchMappings
     : getUiText().emptyMappings;
 
   renderMappings(mappingsDiv, filteredMappings, {
+    isSortDisabled: isSearchActive,
     onToggle(index, enabled) {
       mappings[index].enabled = enabled;
       persistMappings();
