@@ -10,7 +10,7 @@ All data stays in your browser. Nothing is sent to a server.
 
 ## How To Use
 
-Open the GitHub Pages site to use it directly.
+Open the [GitHub Pages](https://clhuang224.github.io/pre-prompt/) site to use it directly.
 
 If you want to test locally, serve this folder with any simple static server and open `index.html`.
 
