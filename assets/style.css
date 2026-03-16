@@ -1,0 +1,33 @@
+body {
+  font-family: sans-serif;
+  margin: 2em;
+}
+
+textarea {
+  width: 100%;
+  min-height: 100px;
+  margin-bottom: 1em;
+}
+
+.mapping-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5em;
+}
+
+.mapping-row input[type="text"] {
+  width: 120px;
+  margin-right: 0.5em;
+}
+
+.mapping-row input[type="checkbox"] {
+  margin-right: 0.5em;
+}
+
+.mapping-row button {
+  margin-left: 0.5em;
+}
+
+#mappings {
+  margin-bottom: 1em;
+}
