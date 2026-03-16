@@ -1,9 +1,4 @@
-import {
-  DEFAULT_INPUT_TEXT,
-  DEFAULT_MAPPINGS,
-  INPUT_STORAGE_KEY,
-  STORAGE_KEY,
-} from './constants.js';
+import { INPUT_STORAGE_KEY, STORAGE_KEY } from './constants.js';
 
 export function loadMappings() {
   try {
@@ -37,15 +32,15 @@ export function loadInputText() {
   return localStorage.getItem(INPUT_STORAGE_KEY) || '';
 }
 
-export function initializeDefaultData() {
+export function initializeDefaultData(localeDefaults) {
   const hasStoredMappings = localStorage.getItem(STORAGE_KEY) !== null;
   const hasStoredInput = localStorage.getItem(INPUT_STORAGE_KEY) !== null;
 
   if (!hasStoredMappings) {
-    saveMappings(DEFAULT_MAPPINGS);
+    saveMappings(localeDefaults.mappings);
   }
 
   if (!hasStoredInput) {
-    saveInputText(DEFAULT_INPUT_TEXT);
+    saveInputText(localeDefaults.inputText);
   }
 }

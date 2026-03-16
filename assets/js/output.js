@@ -16,18 +16,19 @@ export function updateOutput(inputElement, outputElement, mappings) {
   outputElement.value = text;
 }
 
-export function bindCopyOutput(outputElement, setStatus) {
+export function bindCopyOutput(outputElement, getMessages, setStatus) {
   async function copyOutputText() {
     const text = outputElement.value;
+    const messages = getMessages();
 
     if (!text) {
-      setStatus('目前沒有可複製的內容');
+      setStatus(messages.copyEmpty);
       return;
     }
 
     try {
       await navigator.clipboard.writeText(text);
-      setStatus('已複製結果');
+      setStatus(messages.copySuccess);
     } catch {
       outputElement.focus();
       outputElement.select();
@@ -37,11 +38,11 @@ export function bindCopyOutput(outputElement, setStatus) {
       window.getSelection()?.removeAllRanges();
 
       if (copied) {
-        setStatus('已複製結果');
+        setStatus(messages.copySuccess);
         return;
       }
 
-      setStatus('複製失敗，請手動複製');
+      setStatus(messages.copyFailed);
     }
   }
 

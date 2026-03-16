@@ -1,4 +1,4 @@
-export function renderMappings(container, mappings, actions) {
+export function renderMappings(container, mappings, actions, uiText) {
   container.innerHTML = '';
 
   mappings.forEach((map, index) => {
@@ -9,13 +9,13 @@ export function renderMappings(container, mappings, actions) {
     const dragHandle = document.createElement('button');
     dragHandle.type = 'button';
     dragHandle.className = 'drag-handle';
-    dragHandle.title = '拖曳排序';
-    dragHandle.setAttribute('aria-label', '拖曳排序');
+    dragHandle.title = uiText.dragHandleLabel;
+    dragHandle.setAttribute('aria-label', uiText.dragHandleLabel);
     dragHandle.innerHTML = '<span></span><span></span><span></span>';
 
     const switchLabel = document.createElement('label');
     switchLabel.className = 'switch';
-    switchLabel.title = '啟用';
+    switchLabel.title = uiText.switchTitle;
 
     const enable = document.createElement('input');
     enable.type = 'checkbox';
@@ -31,7 +31,7 @@ export function renderMappings(container, mappings, actions) {
 
     const from = document.createElement('input');
     from.type = 'text';
-    from.placeholder = '原字詞';
+    from.placeholder = uiText.fromPlaceholder;
     from.value = map.from;
     from.addEventListener('input', () => {
       actions.onEdit(index, 'from', from.value);
@@ -39,7 +39,7 @@ export function renderMappings(container, mappings, actions) {
 
     const to = document.createElement('input');
     to.type = 'text';
-    to.placeholder = '新字詞';
+    to.placeholder = uiText.toPlaceholder;
     to.value = map.to;
     to.addEventListener('input', () => {
       actions.onEdit(index, 'to', to.value);
@@ -48,7 +48,7 @@ export function renderMappings(container, mappings, actions) {
     const deleteButton = document.createElement('button');
     deleteButton.type = 'button';
     deleteButton.className = 'delete-button';
-    deleteButton.textContent = '刪除';
+    deleteButton.textContent = uiText.deleteMapping;
     deleteButton.addEventListener('click', () => {
       actions.onDelete(index);
     });

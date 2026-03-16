@@ -1,7 +1,9 @@
 export function createToastController(statusElement, durationMs) {
   let timerId;
+  let lastMessage = '';
 
   function setStatus(message) {
+    lastMessage = message;
     statusElement.textContent = message;
     statusElement.classList.remove('is-visible');
 
@@ -24,5 +26,13 @@ export function createToastController(statusElement, durationMs) {
     }, durationMs);
   }
 
-  return { setStatus };
+  function clearStatus() {
+    setStatus('');
+  }
+
+  function getLastMessage() {
+    return lastMessage;
+  }
+
+  return { setStatus, clearStatus, getLastMessage };
 }

@@ -141,6 +141,22 @@ textarea[readonly]:hover {
   padding: 0 1rem;
 }
 
+.language-switcher select {
+  min-height: 2.75rem;
+  padding: 0 0.85rem;
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-sm);
+  background: var(--card-bg);
+  color: var(--text-main);
+  font: inherit;
+  outline: none;
+}
+
+.language-switcher select:focus {
+  border-color: rgba(25, 118, 210, 0.62);
+  box-shadow: 0 0 0 4px rgba(25, 118, 210, 0.12);
+}
+
 .button-primary {
   background: var(--primary);
   color: #fff;
@@ -175,7 +191,7 @@ textarea[readonly]:hover {
 }
 
 #mappings:empty::before {
-  content: "尚未新增詞組，先建立一組對照規則吧。";
+  content: attr(data-empty-text);
   display: block;
   padding: 1rem 1.1rem;
   border: 1px dashed var(--surface-border);

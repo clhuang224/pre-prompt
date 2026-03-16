@@ -1,90 +1,87 @@
 # PrePrompt
 
-將文字貼進 LLM 前，用 PrePrompt 替換敏感資訊。
+[English](./README.md) | [繁體中文](./README.zh-TW.md) | [日本語](./README.ja.md)
 
-PrePrompt 是一個為個人工作流程設計的小工具，重點不只是文字取代，而是維護一套可重用的敏感詞對照表，方便在把文章貼給 LLM 前，先用自訂詞組替換掉敏感資料。
+Replace sensitive details before sending text to an LLM.
 
-所有資料都只存在瀏覽器本機，不會送到伺服器。
+PrePrompt is a small browser-based tool focused on reusable mapping management, so you can swap names, project terms, or other sensitive words before pasting text into an LLM.
 
-## 如何使用
+All data stays in your browser. Nothing is sent to a server.
 
-直接開啟 [GitHub Pages](https://clhuang224.github.io/pre-prompt/) 頁面即可使用。
+## How To Use
 
-如果你想在本機測試，也可以直接用瀏覽器開啟 `index.html`。
+Open the GitHub Pages site to use it directly.
 
-## 專案畫面
+If you want to test locally, serve this folder with any simple static server and open `index.html`.
+
+## Screenshot
 
 ![demo](./demo.png)
 
-## 使用說明
+## Features
 
-第一次進入頁面時，會自動帶入一組範例文章和詞組，方便快速理解整個流程。
+- Edit reusable mappings for original and replacement terms
+- Enable or disable each rule with a switch
+- Reorder mappings by dragging the handle
+- Import and export mappings as JSON
+- Click the output area to copy the current result
+- Switch the UI between Traditional Chinese, English, and Japanese
 
-1. 在「原文」輸入框貼上文章，或直接使用預設範例。
-2. 在「詞組管理」區編輯規則，填入「原字詞」與「新字詞」。
-3. 使用左側的 switch 啟用或停用規則，點選「刪除」可移除不需要的詞組。
-4. 點選「新增」可增加空白規則。
-5. 點選「匯出詞組」可下載目前規則，點選「匯入詞組」可載入先前備份的 JSON。
-6. 結果會依照啟用中的替代規則，即時顯示在「結果」輸入框（唯讀）。
-7. 點選「結果」輸入框可直接複製目前內容。
+> Replacement terms are wrapped with `_` on both sides to make them easier to spot.
 
-> 新字詞會統一加上 `_` 前後綴，以避免與原字詞混淆。
-
-## 專案結構
+## Project Structure
 
 ```text
 .
 ├── index.html
 ├── demo.png
 ├── README.md
+├── README.zh-TW.md
+├── README.ja.md
 └── assets
     ├── favicon.png
     ├── css
-    │   ├── base.css        # 基本變數與全域樣式
-    │   ├── layout.css      # 版面配置
-    │   └── components.css  # 元件樣式
+    │   ├── base.css        # Shared tokens and global styles
+    │   ├── layout.css      # Page layout
+    │   └── components.css  # Component styles
     └── js
-        ├── app.js          # 前端入口，負責初始化與事件綁定
-        ├── constants.js    # 常數與預設資料
-        ├── storage.js      # LocalStorage 讀寫
-        ├── mappings.js     # 詞組列表渲染
-        ├── import-export.js# JSON 匯入 / 匯出
-        ├── output.js       # 替換結果更新與點擊複製
-        ├── sortable.js     # 詞組拖曳排序
-        └── toast.js        # 狀態訊息顯示
+        ├── app.js          # App entry point and wiring
+        ├── constants.js    # Shared constants
+        ├── i18n.js         # Locale selection and language helpers
+        ├── storage.js      # LocalStorage helpers
+        ├── mappings.js     # Mapping list rendering
+        ├── import-export.js# JSON import/export
+        ├── output.js       # Replacement output and copy behavior
+        ├── sortable.js     # SortableJS integration
+        ├── toast.js        # Toast status messages
+        └── locales
+            ├── en.js
+            ├── ja.js
+            └── zh-TW.js
 ```
 
-## 資料儲存
+## Storage
 
-原始文章和替代詞組會儲存在瀏覽器的 LocalStorage 中，不會送到伺服器。  
-你可以在瀏覽器的開發者工具中查看或清除這些資料。
+Source text and mappings are stored in LocalStorage in the current browser only.
 
-匯入 / 匯出使用 JSON 格式，方便備份或在不同裝置之間搬移常用詞組。
+Import and export use JSON so you can back up or move your mappings between devices.
 
-## 目前限制
+## Current Limits
 
-- 目前是單純字串取代，尚未支援正則表達式
-- 尚未處理大小寫判斷、斷詞邊界與規則優先順序
-- 資料只儲存在目前這個瀏覽器的 LocalStorage
+- String replacement only for now
+- No regex, case handling, or word-boundary logic yet
+- Data is stored only in the current browser
 
-## 未來方向
+## Roadmap
 
-### 待整理
+- Support regular expressions
+- Improve case and word-boundary handling
+- Add more import/export formats
+- Detect sensitive information automatically
 
-- 檢查並整理 vibe coding 產生的程式碼
+## Origin
 
-### 功能擴充
-
-- 支援正則表達式
-- 大小寫判斷
-- 斷詞問題
-- 替換規則優先順序問題
-- 匯入 / 匯出更多格式
-- 自動偵測敏感資訊
-
-## 前身
-
-PrePrompt 最初是從這個簡單的 shell script 原型發展而來：
+PrePrompt started from this small shell script prototype:
 
 [replace_words.sh](https://gist.github.com/clhuang224/aaf38d8f3caec8aaf44d4dfa5c5ede15)
 

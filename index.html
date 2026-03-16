@@ -12,20 +12,26 @@
     <body>
         <main class="app-shell">
             <header class="hero">
-                <div>
-                    <p class="eyebrow">Local-first privacy workflow</p>
-                    <h1>PrePrompt</h1>
-                    <p class="hero-copy">在貼給 LLM 之前，先用自訂詞組規則替換敏感資訊。</p>
+                <div class="hero-bar">
+                    <div>
+                        <p id="heroEyebrow" class="eyebrow">Local-first privacy workflow</p>
+                        <h1>PrePrompt</h1>
+                        <p id="heroCopy" class="hero-copy">在貼給 LLM 之前，先用自訂詞組規則替換敏感資訊。</p>
+                    </div>
+                    <div class="language-switcher">
+                        <label id="languageLabel" for="languageSelect">語言</label>
+                        <select id="languageSelect" aria-label="Language"></select>
+                    </div>
                 </div>
             </header>
 
             <section class="card editor-grid">
                 <div class="field">
-                    <label for="inputText">原文</label>
+                    <label id="inputLabel" for="inputText">原文</label>
                     <textarea id="inputText" placeholder="請貼上文章"></textarea>
                 </div>
                 <div class="field">
-                    <label for="outputText">結果</label>
+                    <label id="outputLabel" for="outputText">結果</label>
                     <textarea id="outputText" readonly title="點一下即可複製內容"></textarea>
                 </div>
             </section>
@@ -33,8 +39,8 @@
             <section class="card mapping-card">
                 <div class="section-heading">
                     <div>
-                        <p class="section-kicker">Mappings</p>
-                        <h2>詞組管理</h2>
+                        <p id="mappingKicker" class="section-kicker">Mappings</p>
+                        <h2 id="mappingTitle">詞組管理</h2>
                     </div>
                     <div class="actions actions-toolbar">
                         <button id="exportMappings" class="button button-secondary" type="button">匯出詞組</button>

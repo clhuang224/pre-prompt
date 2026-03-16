@@ -10,6 +10,13 @@
   padding: 1.25rem 0 0.75rem;
 }
 
+.hero-bar {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
 .eyebrow,
 .section-kicker {
   margin: 0 0 0.4rem;
@@ -59,6 +66,12 @@
   min-width: 0;
 }
 
+.language-switcher {
+  display: flex;
+  flex-direction: column;
+  min-width: 10rem;
+}
+
 .actions {
   display: flex;
   flex-wrap: wrap;
@@ -97,6 +110,15 @@
   .section-heading {
     align-items: stretch;
     flex-direction: column;
+  }
+
+  .hero-bar {
+    flex-direction: column;
+  }
+
+  .language-switcher {
+    min-width: 0;
+    width: 100%;
   }
 
   .actions-toolbar,

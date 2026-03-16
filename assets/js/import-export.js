@@ -1,4 +1,4 @@
-export function exportMappings(mappings, setStatus) {
+export function exportMappings(mappings, messages, setStatus) {
   const payload = {
     version: 1,
     exportedAt: new Date().toISOString(),
@@ -14,10 +14,10 @@ export function exportMappings(mappings, setStatus) {
   link.download = 'preprompt-mappings.json';
   link.click();
   URL.revokeObjectURL(url);
-  setStatus(`已匯出 ${mappings.length} 筆詞組`);
+  setStatus(messages.exportSuccess(mappings.length));
 }
 
-export function importMappingsFromFile(file, normalizeMappings, onImported, setStatus) {
+export function importMappingsFromFile(file, normalizeMappings, onImported, messages, setStatus) {
   if (!file) {
     return;
   }
@@ -28,9 +28,9 @@ export function importMappingsFromFile(file, normalizeMappings, onImported, setS
       const parsed = JSON.parse(reader.result);
       const importedMappings = normalizeMappings(parsed.mappings ?? parsed);
       onImported(importedMappings);
-      setStatus(`已匯入 ${importedMappings.length} 筆詞組`);
+      setStatus(messages.importSuccess(importedMappings.length));
     } catch {
-      setStatus('匯入失敗，請確認 JSON 格式正確');
+      setStatus(messages.importFailed);
     }
   });
   reader.readAsText(file);
