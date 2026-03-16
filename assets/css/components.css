@@ -167,6 +167,10 @@ textarea[readonly]:hover {
   transition: border-color 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
 }
 
+.mapping-search-input::-webkit-search-cancel-button {
+  cursor: pointer;
+}
+
 .language-switcher select {
   min-height: 44px;
   padding: 0 14px;
