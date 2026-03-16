@@ -12,9 +12,9 @@
   --danger-text: #b3261e;
   --shadow-card: 0 14px 36px rgba(15, 23, 42, 0.08);
   --shadow-soft: 0 8px 20px rgba(25, 118, 210, 0.12);
-  --radius-lg: 20px;
+  --radius-lg: 16px;
   --radius-md: 14px;
-  --radius-sm: 10px;
+  --radius-sm: 12px;
 }
 
 * {
@@ -75,7 +75,7 @@ textarea {
 
 button {
   border: 0;
-  border-radius: 999px;
+  border-radius: var(--radius-sm);
   font: inherit;
   font-weight: 700;
   cursor: pointer;

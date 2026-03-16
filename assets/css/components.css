@@ -238,7 +238,7 @@ textarea[readonly]:hover {
   max-width: 320px;
   margin: 0;
   padding: 12px 16px;
-  border-radius: 1rem;
+  border-radius: var(--radius-md);
   background: rgba(34, 34, 34, 0.92);
   color: #fff;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
