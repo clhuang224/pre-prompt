@@ -16,7 +16,7 @@ GitHub Pages のページを開けばそのまま使えます。
 
 ## スクリーンショット
 
-![demo](./demo.png)
+![demo](./demo.ja.png)
 
 ## 機能
 
