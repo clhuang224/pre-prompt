@@ -64,15 +64,24 @@ function renderMappings(mappings) {
     const row = document.createElement('div');
     row.className = 'mapping-row';
 
+    const switchLabel = document.createElement('label');
+    switchLabel.className = 'switch';
+    switchLabel.title = '啟用';
+
     const enable = document.createElement('input');
     enable.type = 'checkbox';
     enable.checked = map.enabled !== false;
-    enable.title = '啟用';
     enable.addEventListener('change', () => {
       mappings[idx].enabled = enable.checked;
       saveMappings(mappings);
       updateOutput();
     });
+
+    const switchSlider = document.createElement('span');
+    switchSlider.className = 'switch-slider';
+
+    switchLabel.appendChild(enable);
+    switchLabel.appendChild(switchSlider);
 
     const from = document.createElement('input');
     from.type = 'text';
@@ -103,7 +112,7 @@ function renderMappings(mappings) {
       updateOutput();
     });
 
-    row.appendChild(enable);
+    row.appendChild(switchLabel);
     row.appendChild(from);
     row.appendChild(to);
     row.appendChild(del);

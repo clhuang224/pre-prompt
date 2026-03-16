@@ -2,28 +2,51 @@
 <html lang="zh-TW">
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>PrePrompt</title>
         <link rel="stylesheet" href="./assets/style.css">
     </head>
     <body>
-        <h2>PrePrompt</h2>
-        <div>
-            <label>原始文章</label>
-            <textarea id="inputText" placeholder="請貼上文章"></textarea>
-        </div>
-        <div>
-            <label>結果</label>
-            <textarea id="outputText" readonly></textarea>
-        </div>
-        <div class="actions">
-            <button id="addMapping" type="button">新增項目</button>
-        </div>
-        <div id="mappings"></div>
-        <div class="actions">
-            <button id="exportMappings" type="button">匯出詞組</button>
-            <button id="importMappings" type="button">匯入詞組</button>
-            <input id="importFile" type="file" accept="application/json" hidden>
-        </div>
+        <main class="app-shell">
+            <header class="hero">
+                <div>
+                    <p class="eyebrow">Local-first privacy workflow</p>
+                    <h1>PrePrompt</h1>
+                    <p class="hero-copy">在貼給 LLM 之前，先用自訂詞組規則替換敏感資訊。</p>
+                </div>
+            </header>
+
+            <section class="card editor-grid">
+                <div class="field">
+                    <label for="inputText">原文</label>
+                    <textarea id="inputText" placeholder="請貼上文章"></textarea>
+                </div>
+                <div class="field">
+                    <label for="outputText">結果</label>
+                    <textarea id="outputText" readonly></textarea>
+                </div>
+            </section>
+
+            <section class="card mapping-card">
+                <div class="section-heading">
+                    <div>
+                        <p class="section-kicker">Mappings</p>
+                        <h2>詞組管理</h2>
+                    </div>
+                    <div class="actions actions-toolbar">
+                        <button id="exportMappings" class="button button-secondary" type="button">匯出詞組</button>
+                        <button id="importMappings" class="button button-secondary" type="button">匯入詞組</button>
+                        <input id="importFile" type="file" accept="application/json" hidden>
+                    </div>
+                </div>
+
+                <div id="mappings"></div>
+
+                <div class="actions actions-footer">
+                    <button id="addMapping" class="button button-primary" type="button">新增</button>
+                </div>
+            </section>
+        </main>
         <p id="statusMessage" class="status-message" aria-live="polite"></p>
         <script src="./assets/script.js"></script>
     </body>
