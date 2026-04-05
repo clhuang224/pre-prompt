@@ -44,11 +44,15 @@
 }
 
 .editor-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: 16px;
   padding: 20px;
   margin-bottom: 16px;
+}
+
+.editor-grid > .field {
+  flex: 1 1 calc(50% - 8px);
 }
 
 .mapping-card {
@@ -125,8 +129,13 @@
   }
 
   .editor-grid {
-    grid-template-columns: 1fr;
+    flex-direction: column;
     padding: 16px;
+  }
+
+  .editor-grid > .field {
+    flex-basis: auto;
+    width: 100%;
   }
 
   .mapping-card {
