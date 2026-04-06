@@ -300,10 +300,6 @@ body.is-sorting-active .mapping-list__drag-handle {
     margin-left: auto;
   }
 
-  .mapping-list__drag-handle {
-    width: 100%;
-  }
-
   .toast {
     right: 12px;
     left: 12px;
