@@ -1,6 +1,6 @@
 textarea:focus,
-.mapping-row input[type="text"]:focus,
-.mapping-search-input:focus {
+.mapping-list__input:focus,
+.mapping__search:focus {
   border-color: rgba(25, 118, 210, 0.62);
   background: #fff;
   box-shadow: 0 0 0 4px rgba(25, 118, 210, 0.12);
@@ -15,25 +15,25 @@ textarea[readonly]:hover {
   border-color: rgba(25, 118, 210, 0.42);
 }
 
-.mapping-row {
+.mapping-list__item {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 12px 16px;
+  padding: 14px;
   margin-bottom: 12px;
-  border: 1px solid var(--surface-border);
+  border: 1px solid rgba(220, 229, 240, 0.9);
   border-radius: var(--radius-md);
   background: #fff;
   transition: border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
 }
 
-.mapping-row:hover {
+.mapping-list__item:hover {
   border-color: rgba(25, 118, 210, 0.35);
   box-shadow: var(--shadow-soft);
-  transform: translateY(-2px);
+  transform: translateY(-1px);
 }
 
-.mapping-row input[type="text"] {
+.mapping-list__input {
   flex: 1 1 0;
   min-width: 0;
   height: 48px;
@@ -47,7 +47,7 @@ textarea[readonly]:hover {
   transition: border-color 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
 }
 
-.drag-handle {
+.mapping-list__drag-handle {
   display: inline-flex;
   flex-direction: column;
   align-items: center;
@@ -66,7 +66,7 @@ textarea[readonly]:hover {
   flex-shrink: 0;
 }
 
-.drag-handle span {
+.mapping-list__drag-handle span {
   display: block;
   width: 16px;
   height: 2px;
@@ -74,23 +74,23 @@ textarea[readonly]:hover {
   background: currentColor;
 }
 
-.drag-handle:hover {
+.mapping-list__drag-handle:hover {
   border-color: rgba(25, 118, 210, 0.3);
   background: rgba(25, 118, 210, 0.05);
   color: var(--primary);
 }
 
-.drag-handle:active {
+.mapping-list__drag-handle:active {
   cursor: grabbing;
 }
 
-.drag-handle:disabled {
+.mapping-list__drag-handle:disabled {
   opacity: 0.48;
   cursor: not-allowed;
   box-shadow: none;
 }
 
-.drag-handle:disabled:hover {
+.mapping-list__drag-handle:disabled:hover {
   border-color: rgba(25, 118, 210, 0.14);
   background: #fff;
   color: var(--text-muted);
@@ -107,7 +107,7 @@ textarea[readonly]:hover {
   flex-shrink: 0;
 }
 
-.switch input {
+.switch__input {
   position: absolute;
   inset: 0;
   margin: 0;
@@ -115,7 +115,7 @@ textarea[readonly]:hover {
   cursor: pointer;
 }
 
-.switch-slider {
+.switch__slider {
   position: relative;
   width: 100%;
   height: 100%;
@@ -124,7 +124,7 @@ textarea[readonly]:hover {
   transition: background 0.2s ease, box-shadow 0.2s ease;
 }
 
-.switch-slider::before {
+.switch__slider::before {
   content: "";
   position: absolute;
   top: 4px;
@@ -137,24 +137,27 @@ textarea[readonly]:hover {
   transition: transform 0.2s ease;
 }
 
-.switch input:checked + .switch-slider {
+.switch__input:checked + .switch__slider {
   background: var(--primary);
 }
 
-.switch input:checked + .switch-slider::before {
+.switch__input:checked + .switch__slider::before {
   transform: translateX(16px);
 }
 
-.switch input:focus-visible + .switch-slider {
+.switch__input:focus-visible + .switch__slider {
   box-shadow: 0 0 0 4px rgba(25, 118, 210, 0.12);
 }
 
 .button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   min-height: 44px;
   padding: 0 16px;
 }
 
-.mapping-search-input {
+.mapping__search {
   box-sizing: border-box;
   min-height: 44px;
   padding: 0 16px;
@@ -167,11 +170,11 @@ textarea[readonly]:hover {
   transition: border-color 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
 }
 
-.mapping-search-input::-webkit-search-cancel-button {
+.mapping__search::-webkit-search-cancel-button {
   cursor: pointer;
 }
 
-.language-switcher select {
+.locale-select select {
   min-height: 44px;
   padding: 0 14px;
   border: 1px solid var(--surface-border);
@@ -182,45 +185,46 @@ textarea[readonly]:hover {
   outline: none;
 }
 
-.language-switcher select:focus {
+.locale-select select:focus {
   border-color: rgba(25, 118, 210, 0.62);
   box-shadow: 0 0 0 4px rgba(25, 118, 210, 0.12);
 }
 
-.button-primary {
+.button--primary {
   background: var(--primary);
   color: #fff;
   box-shadow: 0 10px 20px rgba(25, 118, 210, 0.2);
 }
 
-.button-primary:hover {
+.button--primary:hover {
   background: var(--primary-dark);
 }
 
-.button-secondary {
+.button--secondary {
   background: #fff;
   color: var(--primary);
   border: 1px solid rgba(25, 118, 210, 0.18);
-  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
 }
 
-.button-secondary:hover {
+.button--secondary:hover {
   background: rgba(25, 118, 210, 0.06);
   border-color: rgba(25, 118, 210, 0.32);
 }
 
-.mapping-row .delete-button {
+.mapping-list__delete {
   min-height: 44px;
   padding: 0 16px;
+  border: 1px solid rgba(179, 38, 30, 0.12);
   background: var(--danger-soft);
   color: var(--danger-text);
 }
 
-#mappings {
+.mapping-list {
   margin-bottom: 16px;
 }
 
-#mappings:empty::before {
+.mapping-list:empty::before {
   content: attr(data-empty-text);
   display: block;
   padding: 16px 20px;
@@ -230,7 +234,7 @@ textarea[readonly]:hover {
   color: var(--text-muted);
 }
 
-.status-message {
+.toast {
   position: fixed;
   right: 20px;
   bottom: 24px;
@@ -248,7 +252,7 @@ textarea[readonly]:hover {
   transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
-.status-message.is-visible {
+.toast.is-visible {
   opacity: 1;
   transform: translateY(0);
 }
@@ -258,47 +262,49 @@ body.is-sorting-active {
   cursor: grabbing;
 }
 
-body.is-sorting-active .drag-handle {
+body.is-sorting-active .mapping-list__drag-handle {
   cursor: grabbing;
 }
 
-.mapping-row-chosen {
+.mapping-list__item--chosen {
   border-color: rgba(25, 118, 210, 0.45);
   background: #f8fbff;
   box-shadow: 0 12px 28px rgba(25, 118, 210, 0.16);
 }
 
-.mapping-row-drag {
+.mapping-list__item--drag {
   border-color: rgba(25, 118, 210, 0.45);
   background: #f8fbff;
   box-shadow: 0 18px 36px rgba(25, 118, 210, 0.22);
   transform: rotate(0.3deg) scale(1.01);
 }
 
-.mapping-row-ghost {
+.mapping-list__item--ghost {
   opacity: 0.22;
   background: rgba(25, 118, 210, 0.06);
   border-style: dashed;
 }
 
 @media (max-width: 800px) {
-  .mapping-row {
+  .mapping-list__item {
     flex-wrap: wrap;
   }
 
-  .mapping-row input[type="text"] {
+  .mapping-list__input,
+  .mapping-list__delete {
     flex-basis: 100%;
-  }
-
-  .mapping-row .delete-button {
     width: 100%;
   }
 
-  .drag-handle {
+  .switch {
+    margin-left: auto;
+  }
+
+  .mapping-list__drag-handle {
     width: 100%;
   }
 
-  .status-message {
+  .toast {
     right: 12px;
     left: 12px;
     bottom: 16px;

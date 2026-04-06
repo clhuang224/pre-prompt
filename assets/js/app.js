@@ -31,11 +31,11 @@ const mappingSearchInput = document.getElementById('mappingSearch');
 const statusMessage = document.getElementById('statusMessage');
 const languageLabel = document.getElementById('languageLabel');
 const languageSelect = document.getElementById('languageSelect');
-const heroEyebrow = document.getElementById('heroEyebrow');
-const heroCopy = document.getElementById('heroCopy');
+const pageHeaderIntro = document.getElementById('pageHeaderIntro');
+const pageHeaderDescription = document.getElementById('pageHeaderDescription');
 const inputLabel = document.getElementById('inputLabel');
 const outputLabel = document.getElementById('outputLabel');
-const mappingKicker = document.getElementById('mappingKicker');
+const mappingLabel = document.getElementById('mappingLabel');
 const mappingTitle = document.getElementById('mappingTitle');
 
 const { setStatus, clearStatus } = createToastController(statusMessage, TOAST_DURATION_MS);
@@ -177,14 +177,14 @@ function applyLocale() {
 
   htmlElement.lang = currentLocale.meta.htmlLang;
   document.title = currentLocale.meta.title;
-  heroEyebrow.textContent = uiText.heroEyebrow;
-  heroCopy.textContent = uiText.heroCopy;
+  pageHeaderIntro.textContent = uiText.pageHeaderIntro;
+  pageHeaderDescription.textContent = uiText.pageHeaderDescription;
   languageLabel.textContent = uiText.languageLabel;
   inputLabel.textContent = uiText.inputLabel;
   inputText.placeholder = uiText.inputPlaceholder;
   outputLabel.textContent = uiText.outputLabel;
   outputText.title = uiText.outputTitle;
-  mappingKicker.textContent = uiText.mappingKicker;
+  mappingLabel.textContent = uiText.mappingLabel;
   mappingTitle.textContent = uiText.mappingTitle;
   mappingSearchInput.placeholder = uiText.searchMappingsPlaceholder;
   mappingSearchInput.setAttribute('aria-label', uiText.searchMappingsPlaceholder);

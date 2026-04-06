@@ -11,14 +11,14 @@
     </head>
     <body>
         <main class="app-shell">
-            <header class="hero">
-                <div class="hero-bar">
+            <header class="page-header">
+                <div class="page-header__content">
                     <div>
-                        <p id="heroEyebrow" class="eyebrow">Local-first privacy workflow</p>
+                        <p id="pageHeaderIntro" class="page-header__intro">Local-first privacy workflow</p>
                         <h1>PrePrompt</h1>
-                        <p id="heroCopy" class="hero-copy">在貼給 LLM 之前，先用自訂詞組規則替換敏感資訊。</p>
+                        <p id="pageHeaderDescription" class="page-header__description">在貼給 LLM 之前，先用自訂詞組規則替換敏感資訊。</p>
                     </div>
-                    <div class="language-switcher">
+                    <div class="locale-select">
                         <label id="languageLabel" for="languageSelect">語言</label>
                         <select id="languageSelect" aria-label="Language"></select>
                     </div>
@@ -37,27 +37,27 @@
             </section>
 
             <section class="card mapping-card">
-                <div class="section-heading">
+                <div class="mapping__header">
                     <div>
-                        <p id="mappingKicker" class="section-kicker">Mappings</p>
+                        <p id="mappingLabel" class="section-label">Mappings</p>
                         <h2 id="mappingTitle">詞組管理</h2>
                     </div>
-                    <div class="actions actions-toolbar">
-                        <input id="mappingSearch" class="mapping-search-input" type="search" placeholder="搜尋詞組">
-                        <button id="exportMappings" class="button button-secondary" type="button">匯出詞組</button>
-                        <button id="importMappings" class="button button-secondary" type="button">匯入詞組</button>
+                    <div class="action-group action-group--toolbar">
+                        <input id="mappingSearch" class="mapping__search" type="search" placeholder="搜尋詞組">
+                        <button id="exportMappings" class="button button--secondary" type="button">匯出詞組</button>
+                        <button id="importMappings" class="button button--secondary" type="button">匯入詞組</button>
                         <input id="importFile" type="file" accept="application/json" hidden>
                     </div>
                 </div>
 
-                <div id="mappings"></div>
+                <div id="mappings" class="mapping-list"></div>
 
-                <div class="actions actions-footer">
-                    <button id="addMapping" class="button button-primary" type="button">新增</button>
+                <div class="action-group action-group--footer">
+                    <button id="addMapping" class="button button--primary" type="button">新增</button>
                 </div>
             </section>
         </main>
-        <p id="statusMessage" class="status-message" aria-live="polite"></p>
+        <p id="statusMessage" class="toast" aria-live="polite"></p>
         <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.6/Sortable.min.js"></script>
         <script type="module" src="./assets/js/app.js"></script>
     </body>

@@ -39,7 +39,10 @@
 
 - Keep HTML structure simple and avoid unnecessary wrapper elements.
 - When adding interactive controls, include appropriate attributes such as `id`, `for`, `aria-label`, and `title` where needed.
-- Follow existing naming patterns such as `hero`, `mapping-*`, and `actions-*`.
+- Prefer BEM-style class names for new or renamed UI classes, using `block__element` and `block--modifier` patterns where practical.
+- Use `is-*` state classes for temporary UI states such as visibility, sorting, disabled-like, or active states.
+- Prefer semantic, plain-English class names over landing-page or marketing terms such as `hero` and `eyebrow`.
+- Follow existing naming patterns such as `page-header`, `mapping-*`, and `action-*`.
 - If a title or action area must not wrap or be compressed, handle that explicitly in CSS instead of relying on available space.
 
 ## JavaScript Guidelines
@@ -78,6 +81,7 @@
 - Use `px` for width, height, spacing, and border radius where practical.
 - Avoid `rem` for spacing and size values in this project.
 - Avoid `min()`.
+- Prefer `flex` for layout and avoid CSS Grid unless there is a clear layout need that flex cannot handle cleanly.
 - Responsive layout may still use `%`, `calc()`, `max-width`, and `min-width`, but fixed dimensions should prefer `px`.
 - Button `border-radius` should be consistent, and `div` containers should match when practical.
 - Circular UI elements may still use `50%` or `999px` when appropriate.
