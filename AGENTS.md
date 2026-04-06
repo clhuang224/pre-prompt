@@ -17,8 +17,8 @@
 - Other files in `assets/js/*.js` should keep a focused responsibility instead of moving unrelated logic back into `app.js`.
 - `assets/js/locales/*.js` contains UI translations; any user-facing copy change should be updated across all locales.
 - `README.md` is the primary English README.
-- `README.zh-TW.md` and `README.ja.md` are localized README files and should be updated alongside the English README when needed.
-- `demo.png`, `demo.zh-TW.png`, and `demo.ja.png` are localized screenshots and should be updated together when the UI changes in a way that affects the documentation images.
+- `docs/README.zh-TW.md` and `docs/README.ja.md` are localized README files and should be updated alongside the English README when needed.
+- `docs/demo.png`, `docs/demo.zh-TW.png`, and `docs/demo.ja.png` are localized screenshots and should be updated together when the UI changes in a way that affects the documentation images.
 
 ## General Working Rules
 
@@ -67,12 +67,12 @@
 - English is the source language for project documentation.
 - When README content changes, review and update:
   - `README.md`
-  - `README.zh-TW.md`
-  - `README.ja.md`
+  - `docs/README.zh-TW.md`
+  - `docs/README.ja.md`
 - When screenshots become outdated due to UI changes, update:
-  - `demo.png`
-  - `demo.zh-TW.png`
-  - `demo.ja.png`
+  - `docs/demo.png`
+  - `docs/demo.zh-TW.png`
+  - `docs/demo.ja.png`
 - Localized README files and screenshots should stay meaningfully aligned with the English source.
 
 ## CSS / UI Style Guide

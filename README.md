@@ -1,6 +1,6 @@
 # PrePrompt
 
-[English](./README.md) | [繁體中文](./README.zh-TW.md) | [日本語](./README.ja.md)
+[English](./README.md) | [繁體中文](./docs/README.zh-TW.md) | [日本語](./docs/README.ja.md)
 
 Replace sensitive details before sending text to an LLM.
 
@@ -16,7 +16,7 @@ If you want to test locally, serve this folder with any simple static server and
 
 ## Screenshot
 
-![demo](./demo.png)
+![demo](./docs/demo.png)
 
 ## Features
 
@@ -34,10 +34,13 @@ If you want to test locally, serve this folder with any simple static server and
 ```text
 .
 ├── index.html
-├── demo.png
 ├── README.md
-├── README.zh-TW.md
-├── README.ja.md
+├── docs
+│   ├── README.zh-TW.md
+│   ├── README.ja.md
+│   ├── demo.png
+│   ├── demo.zh-TW.png
+│   └── demo.ja.png
 └── assets
     ├── favicon.png
     ├── css
