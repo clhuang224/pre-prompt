@@ -59,8 +59,8 @@ label {
 
 textarea {
   width: 100%;
-  min-height: 280px;
-  padding: 16px 16px 20px;
+  height: 240px;
+  padding: 16px;
   margin: 0;
   border: 1px solid var(--surface-border);
   border-radius: var(--radius-md);
