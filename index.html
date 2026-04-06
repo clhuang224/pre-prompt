@@ -38,16 +38,18 @@
 
             <section class="card mapping-card">
                 <div class="mapping__header">
-                    <div>
-                        <p id="mappingLabel" class="section-label">Mappings</p>
-                        <h2 id="mappingTitle">詞組管理</h2>
+                    <div class="mapping__heading">
+                        <div>
+                            <p id="mappingLabel" class="section-label">Mappings</p>
+                            <h2 id="mappingTitle">詞組管理</h2>
+                        </div>
+                        <div class="action-group action-group--toolbar">
+                            <button id="exportMappings" class="button button--secondary" type="button">匯出詞組</button>
+                            <button id="importMappings" class="button button--secondary" type="button">匯入詞組</button>
+                            <input id="importFile" type="file" accept="application/json" hidden>
+                        </div>
                     </div>
-                    <div class="action-group action-group--toolbar">
-                        <input id="mappingSearch" class="mapping__search" type="search" placeholder="搜尋詞組">
-                        <button id="exportMappings" class="button button--secondary" type="button">匯出詞組</button>
-                        <button id="importMappings" class="button button--secondary" type="button">匯入詞組</button>
-                        <input id="importFile" type="file" accept="application/json" hidden>
-                    </div>
+                    <input id="mappingSearch" class="mapping__search" type="search" placeholder="搜尋詞組">
                 </div>
 
                 <div id="mappings" class="mapping-list"></div>

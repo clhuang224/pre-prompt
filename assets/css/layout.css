@@ -15,7 +15,10 @@
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 16px;
+}
+
+.page-header__content > * + * {
+  margin-left: 16px;
 }
 
 .page-header__intro,
@@ -46,7 +49,6 @@
 .editor-grid {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
   padding: 20px;
   margin-bottom: 16px;
 }
@@ -55,22 +57,32 @@
   flex: 1 1 calc(50% - 8px);
 }
 
+.editor-grid > .field + .field {
+  margin-left: 16px;
+}
+
 .mapping-card {
   padding: 20px;
 }
 
 .mapping__header {
   display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 16px;
+  flex-direction: column;
   margin-bottom: 16px;
 }
 
-.mapping__header > :first-child {
-  flex-shrink: 0;
-  min-width: max-content;
-  margin-right: 24px;
+.mapping__header > * + * {
+  margin-top: 14px;
+}
+
+.mapping__heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.mapping__heading > * + * {
+  margin-left: 16px;
 }
 
 #mappingTitle {
@@ -90,25 +102,21 @@
 .action-group {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+}
+
+.action-group > * + * {
+  margin-left: 12px;
 }
 
 .action-group--toolbar {
-  flex: 1 1 auto;
+  flex: 0 0 auto;
   align-items: center;
   justify-content: flex-end;
-  min-width: 376px;
-  flex-wrap: nowrap;
-  width: auto;
 }
 
-.action-group--toolbar .mapping__search {
-  flex: 1 1 320px;
+.mapping__search {
+  width: 100%;
   min-width: 0;
-}
-
-.action-group--toolbar .button {
-  max-width: fit-content;
 }
 
 .action-group--footer {
@@ -138,17 +146,27 @@
     width: 100%;
   }
 
+  .editor-grid > .field + .field {
+    margin-top: 16px;
+    margin-left: 0;
+  }
+
   .mapping-card {
     padding: 16px;
   }
 
-  .mapping__header {
-    align-items: stretch;
-    flex-direction: column;
+  .mapping__heading {
+    align-items: center;
+    flex-wrap: wrap;
   }
 
   .page-header__content {
     flex-direction: column;
+  }
+
+  .page-header__content > * + * {
+    margin-top: 16px;
+    margin-left: 0;
   }
 
   .locale-select {
@@ -156,15 +174,20 @@
     width: 100%;
   }
 
-  .action-group--toolbar,
-  .action-group--footer {
-    justify-content: stretch;
+  .mapping__heading > :first-child {
+    flex: 1 1 auto;
+    min-width: 0;
   }
 
-  .action-group--toolbar .button,
-  .action-group--toolbar .mapping__search,
-  .action-group--footer .button,
-  .mapping__header .button {
+  .action-group--footer {
+    justify-content: flex-end;
+  }
+
+  .action-group--toolbar .button {
+    flex: 0 0 auto;
+  }
+
+  .action-group--footer .button {
     width: 100%;
   }
 }

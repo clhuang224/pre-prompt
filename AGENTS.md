@@ -81,6 +81,8 @@
 - Use `px` for width, height, spacing, and border radius where practical.
 - Avoid `rem` for spacing and size values in this project.
 - Avoid `min()`.
+- Avoid `gap`; use margin-based spacing so flex layouts remain broadly compatible.
+- Avoid `display: contents` and CSS `order`; keep DOM order aligned with visual order.
 - Prefer `flex` for layout and avoid CSS Grid unless there is a clear layout need that flex cannot handle cleanly.
 - Responsive layout may still use `%`, `calc()`, `max-width`, and `min-width`, but fixed dimensions should prefer `px`.
 - Button `border-radius` should be consistent, and `div` containers should match when practical.
